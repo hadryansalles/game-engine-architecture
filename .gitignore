@@ -1,0 +1,5 @@
+ignore/
+*.ghw
+*.cf
+.vs
+x64
