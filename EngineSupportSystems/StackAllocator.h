@@ -2,6 +2,8 @@
 
 #include <cstdint>
 
+#define DEFAULT_STACK_SIZE_BYTES 64
+
 using U32 = std::int32_t;
 
 class StackAllocator {
@@ -10,6 +12,10 @@ public:
     // The stack can only roll back to a marker, 
     // not arbitrary locations within the stack.
     typedef U32 Marker;
+    
+    StackAllocator() 
+        : StackAllocator(DEFAULT_STACK_SIZE_BYTES)
+    {}
 
     // Constructs a stack allocator with the given size
     explicit StackAllocator(U32 stackSizeBytes) {
@@ -117,4 +123,27 @@ private:
     U32 mTopPointer;
     U32 mBotPointer;
     U32 mTotalSize;
+};
+
+class DoubleBufferedAllocator {
+public:
+    DoubleBufferedAllocator() 
+        : mCurrStack(0)
+    {}
+
+    void swapBuffers() {
+        mCurrStack = (U32)!mCurrStack;
+    }
+
+    void clearCurrentBuffer() {
+        mStack[mCurrStack].clear();
+    }
+
+    void* alloc(U32 nBytes) {
+        return mStack[mCurrStack].alloc(nBytes);
+    }
+
+private:
+    U32 mCurrStack;
+    StackAllocator mStack[2];
 };

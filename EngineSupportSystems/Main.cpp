@@ -9,14 +9,16 @@
  */
 
 // Declare engine systems in any order
-RenderManager     gRenderManager;
-PhysicsManager    gPhysicsManager;
-AnimationManager  gAnimationManager;
-TextureManager    gTextureManager;
-VideoManager      gVideoManager;
-MemoryManager     gMemoryManager;
-FileSystemManager gFileSystemManager;
-SimulatonManager  gSimulationManager;
+RenderManager           gRenderManager;
+PhysicsManager          gPhysicsManager;
+AnimationManager        gAnimationManager;
+TextureManager          gTextureManager;
+VideoManager            gVideoManager;
+MemoryManager           gMemoryManager;
+FileSystemManager       gFileSystemManager;
+SimulatonManager        gSimulationManager;
+StackAllocator          gSingleFrameAllocator;
+DoubleBufferedAllocator gDoubleBufferedAllocator;
 
 int main(int argc, const char* argv) {
    
@@ -29,9 +31,25 @@ int main(int argc, const char* argv) {
     gAnimationManager.startUp();
     gPhysicsManager.startUp();
     gSimulationManager.startUp();
+    
+    bool running = true;
+    while (running) {
+    
+        // Clear the single frame allocator
+        gSingleFrameAllocator.clear();
 
-    // Run the game
-    gSimulationManager.run();
+        gDoubleBufferedAllocator.swapBuffers();
+        gDoubleBufferedAllocator.clearCurrentBuffer();
+
+        // Run the game
+        gSimulationManager.run();
+
+        // Allocate some memory
+        void* p = gSingleFrameAllocator.alloc(3);
+        void* x = gDoubleBufferedAllocator.alloc(3);
+
+        running = false;
+    }
 
     // Shut everything down, in reverse order
     gSimulationManager.shutDown();
