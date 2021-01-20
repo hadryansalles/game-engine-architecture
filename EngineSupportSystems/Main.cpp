@@ -1,6 +1,7 @@
 #include "Managers.h"
 #include "StackAllocator.h"
 #include "AlignedAllocator.h"
+#include "StringId.h"
 
 /*
  * "Many of the singletons are statically allocated objects (globals). 
@@ -31,7 +32,7 @@ int main(int argc, const char* argv) {
     gAnimationManager.startUp();
     gPhysicsManager.startUp();
     gSimulationManager.startUp();
-    
+
     bool running = true;
     while (running) {
     
@@ -43,6 +44,18 @@ int main(int argc, const char* argv) {
 
         // Run the game
         gSimulationManager.run();
+
+        StringId enemy_a = internString("enemy_a");
+        StringId enemy_b = internString("enemy_b");
+
+        ASSERT(enemy_a == SID("enemy_a"));
+        ASSERT(enemy_b == SID("enemy_b"));
+
+        ASSERT(enemy_a == "enemy_a"_sid);
+        ASSERT(enemy_b == "enemy_b"_sid);
+        
+        std::cout << "Enemy A: " << enemy_a << "\n";
+        std::cout << "Enemy B: " << enemy_b << "\n";
 
         // Allocate some memory
         void* p = gSingleFrameAllocator.alloc(3);
