@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SizedTypes.h">
+    <ClInclude Include="SyncFileIO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

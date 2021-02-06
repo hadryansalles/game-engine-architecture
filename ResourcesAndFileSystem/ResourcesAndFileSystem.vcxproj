@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{080bea86-654a-4aef-ae6b-597d58e5ba64}</ProjectGuid>
-    <RootNamespace>AlignmentAndPacking</RootNamespace>
+    <ProjectGuid>{4d30cb53-7938-4951-847c-1c8fd288f307}</ProjectGuid>
+    <RootNamespace>ResourcesAndFileSystem</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -142,7 +142,7 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SizedTypes.h" />
+    <ClInclude Include="SyncFileIO.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

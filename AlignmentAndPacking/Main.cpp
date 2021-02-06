@@ -3,18 +3,7 @@
 #define ASSERT_GLUE(a, b) _ASSERT_GLUE(a, b)
 #define STATIC_ASSERT(expr) enum { ASSERT_GLUE(g_assert_fail_, __LINE__) = 1 / (int) (!!(expr)) }
 
-// alias for platform-independent sized types
-#include <cstdint>
-using U8  = std::uint8_t;
-using U16 = std::uint16_t;
-using U32 = std::uint32_t;
-using U64 = std::uint64_t;
-using I8  = std::int8_t;
-using I16 = std::int16_t;
-using I32 = std::int32_t;
-using I64 = std::int64_t;
-using F32 = float;
-using F64 = double;
+#include "SizedTypes.h"
 
 // data's size is usually the sum of each member's width
 struct Foo {
