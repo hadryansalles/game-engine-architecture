@@ -1,8 +1,6 @@
-#define _CRT_SECURE_NO_WARNINGS 1
-
 #include <fstream>
-#include "../AlignmentAndPacking/SizedTypes.h"
 
+#include "../AlignmentAndPacking/SizedTypes.h"
 
 bool syncReadFile(const char* filePath, U8* buffer, size_t bufferSize, size_t& rBytesRead) {
 
