@@ -29,5 +29,8 @@
     <ClInclude Include="AsyncFileIO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CrossReferences.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

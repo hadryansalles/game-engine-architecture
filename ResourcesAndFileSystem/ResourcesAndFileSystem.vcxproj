@@ -144,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AsyncFileIO.h" />
+    <ClInclude Include="CrossReferences.h" />
     <ClInclude Include="SyncFileIO.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
